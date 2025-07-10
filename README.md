@@ -1,1 +1,1 @@
-Final project for class 11 A - Bus/travel ticketing website
+Final project for class 11 - Bus/travel ticketing website
