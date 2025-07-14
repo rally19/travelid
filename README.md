@@ -7,7 +7,7 @@
     </li>
     <li>
         <strong>Key Features</strong>
-        <ol type="i">
+        <ol>
             <li>
                 <strong>Advanced Reactive Filtering</strong>
                 <p>The application incorporates a sophisticated and highly reactive filtering system, seamlessly integrated across most sections for intuitive search and selection.</p>
