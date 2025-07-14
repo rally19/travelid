@@ -3,7 +3,7 @@
     <li>
         <strong>Description</strong>
         <p>Travelid is a bus and travel ticketing website developed as a final project for my 11th-grade Software Engineering class in SMKN 3 PALU.</p>
-        <p>It leverages **Laravel 12**, **Livewire**, **Livewire Volt**, **Alpine.js**, and **FluxUI** for a modern and dynamic user experience.</p>
+        <p>It leverages <strong>Laravel 12</strong>, <strong>Livewire</strong>, <strong>Livewire Volt</strong>, <strong>Alpine.js</strong>, and <strong>FluxUI</strong> for a modern and dynamic user experience.</p>
     </li>
     <li>
         <strong>Key Features</strong>
