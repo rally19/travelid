@@ -40,6 +40,7 @@
     </li>
     <li>
         <strong>Live Demo</strong>
+        <p><b>(Note: Live demo aren't updated frequently because of web host limitation)</b></p>
         <p>Experience Travelid firsthand by clicking <a href="https://travelid.ct.ws/" target="_blank" rel="noopener noreferrer">here</a>.</p>
     </li>
 </ol>
