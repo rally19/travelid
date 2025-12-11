@@ -15,6 +15,7 @@ class extends Component {
     public string $email = '';
     public string $email_verify_at = '';
     public string $password = '';
+    public string $role = 'user';
     public string $identifier = '';
     public string $identifier_type = 'nik';
     public string $phone_number = '';
@@ -26,6 +27,7 @@ class extends Component {
     public ?User $userToDelete = null;
     public $avatar;
     public $filters = [
+        'role' => '',
         'identifier_type' => '',
         'nationality' => '',
         'gender' => ''
@@ -106,6 +108,9 @@ class extends Component {
             })
             ->when($this->filters['identifier_type'], function ($query) {
                 $query->where('identifier_type', $this->filters['identifier_type']);
+            })
+            ->when($this->filters['role'], function ($query) {
+                $query->where('role', $this->filters['role']);
             })
             ->when($this->filters['nationality'], function ($query) {
                 $query->where('nationality', $this->filters['nationality']);
@@ -229,7 +234,6 @@ class extends Component {
      class="overflow-hidden">
         <div class="p-4 outline outline-offset-[-1px] rounded-lg shadow">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <!-- Add these new search inputs at the top -->
                 <div>
                     <flux:label>Name</flux:label>
                     <flux:input wire:model.live="search.name" placeholder="Search by name..." />
@@ -240,7 +244,16 @@ class extends Component {
                     <flux:input wire:model.live="search.email" placeholder="Search by email..." />
                 </div>
                 
-                <!-- Existing filter inputs -->
+                <div>
+                    <flux:label>Role</flux:label>
+                    <flux:select wire:model.live="filters.role">
+                        <option value="">All Roles</option>
+                        <option value="user">User</option>
+                        <option value="staff">Staff</option>
+                        <option value="admin">Admin</option>
+                    </flux:select>
+                </div>
+
                 <div>
                     <flux:label>Identifier Type</flux:label>
                     <flux:select wire:model.live="filters.identifier_type">
@@ -294,6 +307,7 @@ class extends Component {
             <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection" wire:click="sort('name')">Name</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'email'" :direction="$sortDirection" wire:click="sort('email')">Email</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'email_verified_at'" :direction="$sortDirection" wire:click="sort('email_verified_at')">Verified at</flux:table.column>
+            <flux:table.column>Role</flux:table.column>
             <flux:table.column>Identifier</flux:table.column>
             <flux:table.column>Type</flux:table.column>
             <flux:table.column>Phone Number</flux:table.column>
@@ -324,6 +338,7 @@ class extends Component {
                 <flux:table.cell>{{$user->name}}</flux:table.cell>
                 <flux:table.cell>{{$user->email}}</flux:table.cell>
                 <flux:table.cell>{{$user->email_verified_at}}</flux:table.cell>
+                <flux:table.cell>{{$user->role}}</flux:table.cell>
                 <flux:table.cell>{{$user->identifier}}</flux:table.cell>
                 <flux:table.cell>{{$user->identifier_type}}</flux:table.cell>
                 <flux:table.cell>{{$user->phone_numbers}}</flux:table.cell>

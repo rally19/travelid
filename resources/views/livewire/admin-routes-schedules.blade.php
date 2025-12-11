@@ -321,10 +321,10 @@ class extends Component {
                 <flux:table.cell>{{ $schedule->code }}</flux:table.cell>
                 <flux:table.cell>{{ $schedule->bus?->name ?? 'N/A' }}</flux:table.cell>
                 <flux:table.cell>
-                    <flux:badge  :color="match($schedule->status) {
+                    <flux:badge variant="solid" :color="match($schedule->status) {
                         'operational' => 'lime',
-                        'maintenance' => 'yellow',
-                        'unavailable' => 'zinc',
+                        'unknown' => 'zinc',
+                        'unavailable' => 'red',
                         default => 'zinc'
                     }">
                         {{ ucfirst($schedule->status) }}

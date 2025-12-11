@@ -14,6 +14,7 @@ new class extends Component {
     public string $email = '';
     public bool $email_verified = false;
     public string $password = '';
+    public string $role = 'user';
     public string $identifier = '';
     public string $identifier_type = 'nik';
     public string $phone_numbers = '';
@@ -29,6 +30,7 @@ new class extends Component {
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string', Rules\Password::defaults()],
+            'role' => ['required', 'in:user,staff,admin'],
             'identifier' => ['required', 'string', 'max:25'],
             'identifier_type' => ['required', 'in:nik,paspor,sim,nisn,akta'],
             'phone_numbers' => ['required', 'string', 'max:25'],
@@ -116,6 +118,16 @@ new class extends Component {
                         :placeholder="__('Password')" 
                         viewable 
                     />
+
+                    <flux:select 
+                        wire:model="role" 
+                        :label="__('Role')" 
+                        required
+                    >
+                        <option value="user">{{ __('User') }}</option>
+                        <option value="staff">{{ __('Staff') }}</option>
+                        <option value="admin">{{ __('Admin') }}</option>
+                    </flux:select>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <flux:input 

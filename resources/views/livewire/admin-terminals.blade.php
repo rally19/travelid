@@ -316,8 +316,9 @@ class extends Component {
                 <flux:table.cell>
                     <flux:badge variant="solid" :color="match($terminal->status) {
                         'operational' => 'lime',
+                        'unknown' => 'zinc',
                         'maintenance' => 'yellow',
-                        'unavailable' => 'zinc',
+                        'unavailable' => 'red',
                         default => 'zinc'
                     }">
                         {{ $this->getStatusOptions[$terminal->status] ?? $terminal->status }}

@@ -18,6 +18,7 @@ class extends Component {
     public ?string $email_verified_at = '';
     public string $password_old = '';
     public string $password = '';
+    public string $role = 'user';
     public string $identifier = '';
     public string $identifier_type = 'nik';
     public string $phone_numbers = '';
@@ -36,6 +37,7 @@ class extends Component {
         $this->email_verified_at = $this->user->email_verified_at;
         $this->password_old = $this->user->password;
         $this->password = $this->user->password;
+        $this->role = $this->user->role ?? 'user';
         $this->identifier = $this->user->identifier;
         $this->identifier_type = $this->user->identifier_type ?? 'nik';
         $this->phone_numbers = $this->user->phone_numbers;
@@ -58,6 +60,7 @@ class extends Component {
             ],
             'email_verified_at' => ['date'],
             'password' => ['required', 'string', Rules\Password::defaults()],
+            'role' => ['required', 'in:user,staff,admin'],
             'identifier' => ['required', 'string', 'max:25'],
             'identifier_type' => ['required', 'in:nik,paspor,sim,nisn,akta'],
             'phone_numbers' => ['required', 'string', 'max:25'],
@@ -206,6 +209,17 @@ class extends Component {
                     :placeholder="__('Password')" 
                     viewable 
                 />
+
+                <flux:select 
+                    wire:model="role" 
+                    :label="__('Role')" 
+                    disabled
+                    readonly
+                >
+                    <option value="user">{{ __('User') }}</option>
+                    <option value="staff">{{ __('Staff') }}</option>
+                    <option value="admin">{{ __('Admin') }}</option>
+                </flux:select>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <flux:input 

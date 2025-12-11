@@ -34,7 +34,7 @@ Route::middleware(['auth', 'verified'])->get('/payment-proof/{orderId}/{filename
     return Response::file(Storage::disk('local')->path($filePath));
 })->name('payment-proof');
 
-Route::middleware(['auth', 'verified', 'check.email'])->get('admin/payment-proof/{orderId}/{filename}', function ($orderId, $filename) {
+Route::middleware(['auth', 'verified', 'check.staff'])->get('admin/payment-proof/{orderId}/{filename}', function ($orderId, $filename) {
     $order = Order::where('id', $orderId)->firstOrFail();
     $filePath = 'payment_proofs/' . $filename;
     if (!Storage::disk('local')->exists($filePath) || 
@@ -52,7 +52,7 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::prefix('admin')->middleware(['auth', 'verified', 'check.email'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'verified', 'check.staff'])->group(function () {
     Volt::route('/', 'admin')->name('admin');
 
     Volt::route('/orders', 'admin-orders')->name('admin.orders');
@@ -60,9 +60,9 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'check.email'])->group(f
 
     Volt::route('/tags', 'admin-tags')->name('admin.tags');
     
-    Volt::route('/users', 'admin-users')->name('admin.users');
-    Volt::route('/user/edit/{id}', 'admin-user-edit')->name('admin.edit.user');
-    Volt::route('/user/view/{id}', 'admin-user-view')->name('admin.view.user');
+    Volt::route('/users', 'admin-users')->middleware(['check.admin'])->name('admin.users');
+    Volt::route('/user/edit/{id}', 'admin-user-edit')->middleware(['check.admin'])->name('admin.edit.user');
+    Volt::route('/user/view/{id}', 'admin-user-view')->middleware(['check.admin'])->name('admin.view.user');
 
     Volt::route('/routes-schedules', 'admin-routes-schedules')->name('admin.routes-schedules');
     Volt::route('/routes-schedule/edit/{id}', 'admin-routes-schedule-edit')->name('admin.edit.routes-schedule');

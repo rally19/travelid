@@ -61,7 +61,7 @@
 
                     <flux:menu.radio.group>
                         
-                        @if ((auth()->user()->email ?? '') === 'masterrally1808@gmail.com' && auth()->user()->hasVerifiedEmail())
+                        @if ((auth()->user()->role ?? '') === 'admin' || (auth()->user()->role ?? '') === 'staff' && auth()->user()->hasVerifiedEmail())
                         <flux:menu.item :href="route('admin')" icon="arrow-right-end-on-rectangle" wire:navigate> {{ __('Admin') }} </flux:menu.item>
                         @endif
                         @auth

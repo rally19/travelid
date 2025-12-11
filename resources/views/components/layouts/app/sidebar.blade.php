@@ -18,7 +18,9 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Admin')" class="grid">
                     <flux:navlist.item icon="home" :href="route('admin')" :current="request()->routeIs('admin')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    @if ((auth()->user()->role ?? '') === 'admin' && auth()->user()->hasVerifiedEmail())
                     <flux:navlist.item icon="users" :href="route('admin.users')" :current="request()->routeIs('admin.users')" wire:navigate>{{ __('Users') }}</flux:navlist.item>
+                    @endif
                     <flux:navlist.item icon="currency-dollar" :href="route('admin.orders')" :current="request()->routeIs('admin.orders')" wire:navigate>{{ __('Orders') }}</flux:navlist.item>
                     <flux:navlist.item icon="tag" :href="route('admin.tags')" :current="request()->routeIs('admin.tags')" wire:navigate>{{ __('Tags') }}</flux:navlist.item>
                     <flux:navlist.item icon="truck" :href="route('admin.buses')" :current="request()->routeIs('admin.buses')" wire:navigate>{{ __('Buses') }}</flux:navlist.item>
