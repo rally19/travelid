@@ -136,7 +136,13 @@ class extends Component {
 
 <div>
     <div class="text-center">
-    <flux:heading size="xl">WELCOME BACK ADMIN {{ Auth::user()->name }}!</flux:heading>
+    <flux:heading size="xl">WELCOME BACK
+                                        @if ((auth()->user()->role ?? '') === 'admin')
+                                        ADMIN
+                                        @else
+                                        STAFF
+                                        @endif
+                                        {{ Auth::user()->name }}!</flux:heading>
     </div>
     <br><br>
     <flux:separator text="DASHBOARD" />

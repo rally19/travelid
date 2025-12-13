@@ -12,7 +12,13 @@
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
             <a href="{{ route('dashboard') }}" class="mr-5 flex items-center space-x-2" wire:navigate>
-                <x-app-logo /><span class="font-bold">[Admin]</span>
+                <x-app-logo /><span class="font-bold">[
+                                                      @if ((auth()->user()->role ?? '') === 'admin')
+                                                      Admin
+                                                      @else
+                                                      Staff
+                                                      @endif
+                                                      ]</span>
             </a>
 
             <flux:navlist variant="outline">
@@ -70,6 +76,18 @@
                     <flux:menu.item as="button" icon="arrow-right-start-on-rectangle" class="w-full" href="{{ route('dashboard') }}" wire:navigate>
                         {{ __('Exit') }}
                     </flux:menu.item>
+
+                    <flux:menu.separator />
+
+                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                        
+                        @csrf
+                        <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
+                            {{ __('Log Out') }}
+                        </flux:menu.item>
+                        
+                    </form>
+                    
                 </flux:menu>
             </flux:dropdown>
         </flux:sidebar>
@@ -107,6 +125,16 @@
                     <flux:menu.item as="button" icon="arrow-right-start-on-rectangle" class="w-full" href="{{ route('dashboard') }}" wire:navigate>
                         {{ __('Exit') }}
                     </flux:menu.item>
+                    
+                    <flux:menu.separator />
+
+                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                        
+                        @csrf
+                        <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
+                            {{ __('Log Out') }}
+                        </flux:menu.item>
+                        
                     </form>
                 </flux:menu>
             </flux:dropdown>
