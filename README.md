@@ -21,10 +21,6 @@
                 <p>A flexible tagging system allows for highly customizable categorization and organization of bus information.</p>
             </li>
             <li>
-                <strong>Secure User and Admin Experience</strong>
-                <p>Robust middleware is implemented to prevent unauthorized access to sensitive user data, payment proofs, and all administrator-exclusive pages, ensuring a secure environment.</p>
-            </li>
-            <li>
                 <strong>Streamlined Authentication</strong>
                 <p>The platform includes a multi-step registration process and a throttled login page with a "remember me" feature for enhanced user convenience and security.</p>
             </li>
@@ -36,11 +32,24 @@
                 <strong>Personalized User Dashboard</strong>
                 <p>Users have access to a dedicated dashboard where they can conveniently view their order history and spending. This feature also allows for easy cancellation, editing, and viewing of detailed, exportable (PDF or print) invoices.</p>
             </li>
+            <li> 
+                <strong>Role-Based Access Control</strong>
+                <table border="0" cellpadding="5" cellspacing="0">
+                    <tr>
+                        <td align="center">
+                            <font size="+2">
+                                <b>&nbsp;NEW FEATURE&nbsp;</b>
+                            </font>
+                        </td>
+                    </tr>
+                </table>
+                <p>The secure middleware is enhanced with a granular role system, categorizing users into three distinct access levels: User, Staff, and Admin. This system ensures that authorization to sensitive data, payment proofs, and all administrator-exclusive pages is strictly enforced based on the user's assigned role, providing a layered defense against unauthorized access.</p> 
+            </li>
         </ol>
     </li>
     <li>
         <strong>Live Demo</strong>
-        <p><b>(Note: Live demo aren't updated frequently because of web host limitation)</b></p>
+        <p><b>(Note: Live demo aren't updated because of web host limitation)</b></p>
         <p>Experience Travelid firsthand by clicking <a href="https://travelid.ct.ws/" target="_blank" rel="noopener noreferrer">here</a>.</p>
     </li>
 </ol>
